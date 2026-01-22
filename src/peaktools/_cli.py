@@ -3,7 +3,7 @@ from .ref_point import main as run_reference_point
 from .scale_region import main as run_scale_region
 
 class CLI:
-    """Cli interface for python package bamtools.
+    """Cli interface for python package peaktools.
 
     - peaktools is a commandline tool and a python package
     """
