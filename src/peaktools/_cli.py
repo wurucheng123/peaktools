@@ -27,7 +27,7 @@ class CLI:
         vmax: int = None,
         cmap: str = "Purples",
     ):
-        """Query bam file info.
+        """Calculate matrix and visualize for a reference point.
 
         Args:
             input (str): Input bed
@@ -84,7 +84,7 @@ class CLI:
         vmax: int = None,
         cmap: str = "Purples",
     ):
-        """Query bam file info.
+        """Calculate matrix and visualize for a scaled region.
 
         Args:
             input (str): Input bed
