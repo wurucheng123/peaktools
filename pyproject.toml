@@ -6,6 +6,13 @@ authors = [
     {name = "wurucheng123",email = "wurucheng@pumc.edu.cn"}
 ]
 readme = "README.md"
+license = "MIT"
+keywords = ["bioinformatics", "peak-calling"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3.12",
+]
 requires-python = ">=3.12"
 dependencies = [
     "fire (>=0.7.1,<0.8.0)",
