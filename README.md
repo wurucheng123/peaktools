@@ -31,3 +31,8 @@ peaktools scale_region \
     signal_H3K4me3.ScaleRegion.csv \
     ./H3K4me3_heatmap.pdf ./H3K4me3_profile.pdf -p 4
 ```
+For more parameters and information, you can run:
+```bash
+peaktools reference-point -h
+peaktools scale_region -h
+```
