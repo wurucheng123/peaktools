@@ -1,0 +1,270 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>peaktools._cli &mdash; peaktools 1.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=fc837d61"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            peaktools
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">peaktools</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">peaktools._cli</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for peaktools._cli</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">fire</span><span class="w"> </span><span class="kn">import</span> <span class="n">Fire</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.ref_point</span><span class="w"> </span><span class="kn">import</span> <span class="n">main</span> <span class="k">as</span> <span class="n">run_reference_point</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.scale_region</span><span class="w"> </span><span class="kn">import</span> <span class="n">main</span> <span class="k">as</span> <span class="n">run_scale_region</span>
+
+<div class="viewcode-block" id="CLI">
+<a class="viewcode-back" href="../../api.html#peaktools._cli.CLI">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">CLI</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Cli interface for python package peaktools.</span>
+
+<span class="sd">    - peaktools is a commandline tool and a python package</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="CLI.reference_point">
+<a class="viewcode-back" href="../../api.html#peaktools._cli.CLI.reference_point">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">reference_point</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="nb">input</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">input_bam</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">output</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">output_heatmap</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">output_profile</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">ref_point</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;TSS&quot;</span><span class="p">,</span>
+        <span class="n">up_extend_length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3000</span><span class="p">,</span>
+        <span class="n">down_extend_length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3000</span><span class="p">,</span>
+        <span class="n">extend_binsize</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
+        <span class="n">count_norm_method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;RPKM&quot;</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;ERROR&quot;</span><span class="p">,</span>
+        <span class="n">processes</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="n">temp_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">vmin</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">vmax</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">cmap</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Purples&quot;</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate matrix and visualize for a reference point.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            input (str): Input bed</span>
+<span class="sd">            input_bam (str): Input bam file</span>
+<span class="sd">            output (str, optional): Output csv file.</span>
+<span class="sd">            output_heatmap (str, optional): Output heatmap pdf file.</span>
+<span class="sd">            output_profile (str, optional): Output profile pdf file.</span>
+<span class="sd">            up_extend_length (int, optional): upstream region extend length. Defaults to 3000.</span>
+<span class="sd">            down_extend_length (int, optional): downstream region extend length. Defaults to 3000.</span>
+<span class="sd">            extend_binsize (int, optional): region extend binsize. Defaults to 100.</span>
+<span class="sd">            count_norm_method (str, optional): Can be RPKM, Raw or CPM. Defaults to &quot;RPKM&quot;.</span>
+<span class="sd">            verbose (str, optional): The logging level as a string. Defaults to &quot;ERROR&quot;.</span>
+<span class="sd">            processes (int, optional): Number of processes to use. Defaults to 1.</span>
+<span class="sd">            temp_dir (str, optional): folder to put temp files, use input dir if not defined. Defaults to None.</span>
+<span class="sd">            vmin (int, optional): Lower boundary of scale bar. Defaults to 0.</span>
+<span class="sd">            vmax (int, optional): Upper boundary of scale bar. Defaults to 99% quantile.</span>
+<span class="sd">            cmap (str, optional): Color theme of heatmap. Defaults to &quot;Purples&quot;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">run_reference_point</span><span class="p">(</span>
+            <span class="nb">input</span><span class="o">=</span><span class="nb">input</span><span class="p">,</span>
+            <span class="n">input_bam</span><span class="o">=</span><span class="n">input_bam</span><span class="p">,</span>
+            <span class="n">output</span><span class="o">=</span><span class="n">output</span><span class="p">,</span>
+            <span class="n">ref_point</span><span class="o">=</span><span class="n">ref_point</span><span class="p">,</span>
+            <span class="n">up_extend_length</span><span class="o">=</span><span class="n">up_extend_length</span><span class="p">,</span>
+            <span class="n">down_extend_length</span><span class="o">=</span><span class="n">down_extend_length</span><span class="p">,</span>
+            <span class="n">extend_binsize</span><span class="o">=</span><span class="n">extend_binsize</span><span class="p">,</span>
+            <span class="n">count_norm_method</span><span class="o">=</span><span class="n">count_norm_method</span><span class="p">,</span>
+            <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span>
+            <span class="n">processes</span><span class="o">=</span><span class="n">processes</span><span class="p">,</span>
+            <span class="n">temp_dir</span><span class="o">=</span><span class="n">temp_dir</span><span class="p">,</span>
+            <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span>
+            <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span>
+            <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span>
+            <span class="n">output_heatmap</span><span class="o">=</span><span class="n">output_heatmap</span><span class="p">,</span>
+            <span class="n">output_profile</span><span class="o">=</span><span class="n">output_profile</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CLI.scale_region">
+<a class="viewcode-back" href="../../api.html#peaktools._cli.CLI.scale_region">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">scale_region</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="nb">input</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">input_bam</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">output</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">output_heatmap</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">output_profile</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">up_extend_length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3000</span><span class="p">,</span>
+        <span class="n">down_extend_length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3000</span><span class="p">,</span>
+        <span class="n">extend_binsize</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
+        <span class="n">split_num</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
+        <span class="n">count_norm_method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;RPKM&quot;</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;ERROR&quot;</span><span class="p">,</span>
+        <span class="n">processes</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="n">temp_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">vmin</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">vmax</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">cmap</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Purples&quot;</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate matrix and visualize for a scaled region.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            input (str): Input bed</span>
+<span class="sd">            input_bam (str): Input bam file</span>
+<span class="sd">            output (str, optional): Output csv file.</span>
+<span class="sd">            output_heatmap (str, optional): Output heatmap pdf file.</span>
+<span class="sd">            output_profile (str, optional): Output profile pdf file.</span>
+<span class="sd">            up_extend_length (int, optional): upstream region extend length. Defaults to 3000.</span>
+<span class="sd">            down_extend_length (int, optional): downstream region extend length. Defaults to 3000.</span>
+<span class="sd">            extend_binsize (int, optional): region extend binsize. Defaults to 100.</span>
+<span class="sd">            split_num (int, optional): number of bins to split the region. Defaults to 100.</span>
+<span class="sd">            count_norm_method (str, optional): Can be RPKM, Raw or CPM. Defaults to &quot;RPKM&quot;.</span>
+<span class="sd">            verbose (str, optional): The logging level as a string. Defaults to &quot;ERROR&quot;.</span>
+<span class="sd">            processes (int, optional): Number of processes to use. Defaults to 1.</span>
+<span class="sd">            temp_dir (str, optional): folder to put temp files, use input dir if not defined. Defaults to None.</span>
+<span class="sd">            vmin (int, optional): Lower boundary of scale bar. Defaults to 0.</span>
+<span class="sd">            vmax (int, optional): Upper boundary of scale bar. Defaults to 99% quantile.</span>
+<span class="sd">            cmap (str, optional): Color theme of heatmap. Defaults to &quot;Purples&quot;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">run_scale_region</span><span class="p">(</span>
+            <span class="nb">input</span><span class="o">=</span><span class="nb">input</span><span class="p">,</span>
+            <span class="n">input_bam</span><span class="o">=</span><span class="n">input_bam</span><span class="p">,</span>
+            <span class="n">output</span><span class="o">=</span><span class="n">output</span><span class="p">,</span>
+            <span class="n">up_extend_length</span><span class="o">=</span><span class="n">up_extend_length</span><span class="p">,</span>
+            <span class="n">down_extend_length</span><span class="o">=</span><span class="n">down_extend_length</span><span class="p">,</span>
+            <span class="n">extend_binsize</span><span class="o">=</span><span class="n">extend_binsize</span><span class="p">,</span>
+            <span class="n">split_num</span><span class="o">=</span><span class="n">split_num</span><span class="p">,</span>
+            <span class="n">count_norm_method</span><span class="o">=</span><span class="n">count_norm_method</span><span class="p">,</span>
+            <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span>
+            <span class="n">processes</span><span class="o">=</span><span class="n">processes</span><span class="p">,</span>
+            <span class="n">temp_dir</span><span class="o">=</span><span class="n">temp_dir</span><span class="p">,</span>
+            <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span>
+            <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span>
+            <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span>
+            <span class="n">output_heatmap</span><span class="o">=</span><span class="n">output_heatmap</span><span class="p">,</span>
+            <span class="n">output_profile</span><span class="o">=</span><span class="n">output_profile</span><span class="p">,</span>
+        <span class="p">)</span></div>
+</div>
+
+
+<div class="viewcode-block" id="main">
+<a class="viewcode-back" href="../../api.html#peaktools._cli.main">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="n">cli</span> <span class="o">=</span> <span class="n">CLI</span><span class="p">()</span>
+    <span class="n">Fire</span><span class="p">(</span><span class="n">cli</span><span class="p">)</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+
+
+<span class="c1"># python ./query_BAM_with_ref_point.py -h</span>
+<span class="c1"># usage: query_BAM_with_ref_point.py [-h] -i INPUT -b INPUT_BAM [-o OUTPUT] [--up_extend_length UP_EXTEND_LENGTH]</span>
+<span class="c1">#                                    [--down_extend_length DOWN_EXTEND_LENGTH] [--extend_binsize EXTEND_BINSIZE]</span>
+<span class="c1">#                                    [--count_norm_method COUNT_NORM_METHOD] [--verbose VERBOSE]</span>
+
+<span class="c1"># Query BAM count info</span>
+
+<span class="c1"># options:</span>
+<span class="c1">#   -h, --help            show this help message and exit</span>
+<span class="c1">#   -i, --input INPUT     Input bed</span>
+<span class="c1">#   -b, --input_bam INPUT_BAM</span>
+<span class="c1">#                         Input bam file</span>
+<span class="c1">#   -o, --output OUTPUT   Output default=stdout</span>
+<span class="c1">#   --up_extend_length UP_EXTEND_LENGTH</span>
+<span class="c1">#                         upstream region extend length, default=3000</span>
+<span class="c1">#   --down_extend_length DOWN_EXTEND_LENGTH</span>
+<span class="c1">#                         downstream region extend length, default=3000</span>
+<span class="c1">#   --extend_binsize EXTEND_BINSIZE</span>
+<span class="c1">#                         region extend binsize, default=100</span>
+<span class="c1">#   --count_norm_method COUNT_NORM_METHOD</span>
+<span class="c1">#                         Can be RPKM, Raw or CPM, default=RPKM</span>
+<span class="c1">#   --verbose VERBOSE     Larger number means out more log info, can be 0,1,2,3 default=3</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Ru-Cheng Wu.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
