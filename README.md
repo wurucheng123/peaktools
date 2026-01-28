@@ -36,3 +36,5 @@ For more parameters and information, you can run:
 peaktools reference-point -h
 peaktools scale_region -h
 ```
+## Doc
+See [Doc](https://wurucheng123.github.io/peaktools/)
